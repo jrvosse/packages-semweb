@@ -316,16 +316,58 @@ system:term_expansion((:- rdf_prefix(AliasSpec, URI)), Clauses) :-
 %   @deprecated New code  must  modify   the  namespace  table using
 %   rdf_register_ns/3 and query using rdf_current_ns/2.
 
+% RDFa
+ns(csvw,    'http://www.w3.org/ns/csvw#').
 ns(dc,      'http://purl.org/dc/elements/1.1/').
+% RDFa
+ns(dcat,    'http://www.w3.org/ns/dcat#').
 ns(dcterms, 'http://purl.org/dc/terms/').
 ns(eor,     'http://dublincore.org/2000/03/13/eor#').
 ns(foaf,    'http://xmlns.com/foaf/0.1/').
+% RDFa
+ns(grddl,   'http://www.w3.org/2003/g/data-view#').
+% RDFa
+ns(ma,      'http://www.w3.org/ns/ma-ont#').
+% RDFa
+ns(mf,      'http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#').
+% RDFa
+ns(org,     'http://www.w3.org/ns/org#').
+% RDFa
 ns(owl,     'http://www.w3.org/2002/07/owl#').
+% RDFa
+ns(prov,    'http://www.w3.org/ns/prov#').
+% RDFa
+ns(qb,      'http://purl.org/linked-data/cube#').
+% RDFa
 ns(rdf,     'http://www.w3.org/1999/02/22-rdf-syntax-ns#').
+% RDFa
+ns(rdfa,    'http://www.w3.org/ns/rdfa#').
+% RDFa
 ns(rdfs,    'http://www.w3.org/2000/01/rdf-schema#').
+% RDFa
+ns(rdft,    'http://www.w3.org/ns/rdftest#').
+% RDFa
+ns(rif,     'http://www.w3.org/2007/rif#').
+% RDFa
+ns(rr,      'http://www.w3.org/ns/r2rml#').
+% RDFa
+ns(sd,      'http://www.w3.org/ns/sparql-service-description#').
 ns(serql,   'http://www.openrdf.org/schema/serql#').
+% RDFa
 ns(skos,    'http://www.w3.org/2004/02/skos/core#').
+% RDFa
+ns(skosxl,  'http://www.w3.org/2008/05/skos-xl#').
+% RDFa
 ns(void,    'http://rdfs.org/ns/void#').
+% RDFa
+ns(wdr,     'http://www.w3.org/2007/05/powder#').
+% RDFa
+ns(wdrs,    'http://www.w3.org/2007/05/powder-s#').
+% RDFa
+ns(xhv,     'http://www.w3.org/1999/xhtml/vocab#').
+% RDFa
+ns(xml,     'http://www.w3.org/XML/1998/namespace').
+% RDFa
 ns(xsd,     'http://www.w3.org/2001/XMLSchema#').
 
 %!  rdf_register_prefix(+Prefix, +URI) is det.
