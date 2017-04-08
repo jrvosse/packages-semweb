@@ -1292,14 +1292,14 @@ rdf_literal(Lit, D, Lex, LTag) :-
   legacy_literal_components(Lit0, D, Lex, LTag),
   post_object(Lit, Lit0).
 rdf_literal(Lit, D, Lex, LTag) :-
-  pre_ground_object(Lit, literal(Lit0)), !,
+  pre_ground_object(Lit, Lit0), !,
   legacy_literal_components(Lit0, D, Lex, LTag).
 rdf_literal(Lit, _, _, _) :-
   type_error(rdf_literal, Lit).
 
-legacy_literal_components(type(D,Lex0), D, Lex, _) :- !,
+legacy_literal_components(literal(type(D,Lex0)), D, Lex, _) :- !,
   atom_string(Lex0, Lex).
-legacy_literal_components(lang(LTag,Lex0), D, Lex, LTag) :-
+legacy_literal_components(literal(lang(LTag,Lex0)), D, Lex, LTag) :-
   rdf_equal(rdf:langString, D),
   atom_string(Lex0, Lex).
 
