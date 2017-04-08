@@ -74,6 +74,7 @@
 
             rdf_create_bnode/1,         % ?Term
 
+            rdf_literal/4,              % ?Literal, ?D, ?Lexical, ?Lang
             rdf_canonical_literal/2,    % +In, -Canonical
             rdf_lexical_form/2,         % +Literal, -Lexical
 
@@ -191,6 +192,7 @@ In a nutshell, the following issues are addressed:
     rdf_retractall(r,r,o,r),
     {}(t),
     rdf_where(t),
+    rdf_literal(o, r, ?, ?),
     rdf_canonical_literal(o,-),
     rdf_lexical_form(o,-),
     rdf_compare(-,o,o),
@@ -1280,6 +1282,26 @@ write_xml_literal(html, DOM, Text) :-
                               [ header(false),
                                 layout(false)
                               ])).
+
+%! rdf_literal(+Lit, -D, -Lex, -LTag) is det.
+%! rdf_literal(-Lit, +D, +Lex, -LTag) is det.
+%! rdf_literal(-Lit, +D, +Lex, +LTag) is det.
+
+rdf_literal(Lit, D, Lex, LTag) :-
+  var(Lit), !,
+  legacy_literal_components(Lit0, D, Lex, LTag),
+  post_object(Lit, Lit0).
+rdf_literal(Lit, D, Lex, LTag) :-
+  pre_ground_object(Lit, literal(Lit0)), !,
+  legacy_literal_components(Lit0, D, Lex, LTag).
+rdf_literal(Lit, _, _, _) :-
+  type_error(rdf_literal, Lit).
+
+legacy_literal_components(type(D,Lex0), D, Lex, _) :- !,
+  atom_string(Lex0, Lex).
+legacy_literal_components(lang(LTag,Lex0), D, Lex, LTag) :-
+  rdf_equal(rdf:langString, D),
+  atom_string(Lex0, Lex).
 
 %!  rdf_canonical_literal(++In, -Literal) is det.
 %
