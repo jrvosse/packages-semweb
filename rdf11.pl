@@ -1297,10 +1297,10 @@ rdf_literal(Lit, D, Lex, LTag) :-
 rdf_literal(Lit, _, _, _) :-
   type_error(rdf_literal, Lit).
 
-legacy_literal_components(literal(type(D,Lex0)), D, Lex, _) :- !,
-  atom_string(Lex0, Lex).
 legacy_literal_components(literal(lang(LTag,Lex0)), D, Lex, LTag) :-
-  rdf_equal(rdf:langString, D),
+  rdf_equal(rdf:langString, D), !,
+  atom_string(Lex0, Lex).
+legacy_literal_components(literal(type(D,Lex0)), D, Lex, _) :-
   atom_string(Lex0, Lex).
 
 %!  rdf_canonical_literal(++In, -Literal) is det.
