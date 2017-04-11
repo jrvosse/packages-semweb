@@ -1091,7 +1091,7 @@ in_ground_type(xsd:boolean, Val, Val0) :-
     ;   type_error(rdf_boolean, Val)
     ).
 in_ground_type(rdf:langString, _Val0, _) :-
-    !,
+    !,gtrace,
     domain_error(rdf_data_type, rdf:langString).
 in_ground_type(DateTimeType, Val, Val0) :-
     xsd_date_time_type(DateTimeType),
@@ -1297,10 +1297,10 @@ rdf_literal(Lit, D, Lex, LTag) :-
 rdf_literal(Lit, _, _, _) :-
   type_error(rdf_literal, Lit).
 
-legacy_literal_components(literal(type(D,Lex0)), D, Lex, _) :- !,
-  atom_string(Lex0, Lex).
 legacy_literal_components(literal(lang(LTag,Lex0)), D, Lex, LTag) :-
-  rdf_equal(rdf:langString, D),
+  rdf_equal(rdf:langString, D), !,
+  atom_string(Lex0, Lex).
+legacy_literal_components(literal(type(D,Lex0)), D, Lex, _) :-
   atom_string(Lex0, Lex).
 
 %!  rdf_canonical_literal(++In, -Literal) is det.
